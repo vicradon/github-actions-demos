@@ -1,0 +1,14 @@
+name: "Call a Webhook when an issue is created"
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  send_webhook_notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          curl -X POST https://discord.com/api/webhooks/1219417054541648018/30_pZ5koZfFuRjjD0ibQ4sGK_6yF9B3rvkk68jyr-xa5y-8y5fLaZ9T9ZwN0pU_uf6U0 -d "content=${{github.event.issue.body}}"
