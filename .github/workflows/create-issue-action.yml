@@ -4,6 +4,7 @@ on:
   issues:
     types:
       - opened
+      - edited
 
 jobs:
   send_webhook_notification:
@@ -22,9 +23,11 @@ jobs:
               "content": "",
               "embeds": [
                 {
-                  "title": "${{github.event.issue.title}}",
+                  "title": |
+                    "${{github.event.issue.title}}",
                   "url": "${{github.event.issue.url}}",
-                  "description": "${{github.event.issue.body}}",
+                  "description": |
+                    "${{github.event.issue.body}}",
                   "color": 15258703,
                   "footer": {
                     "text": "Aren't Github Actions cool?",
