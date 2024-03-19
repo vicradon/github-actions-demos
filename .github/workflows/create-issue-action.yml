@@ -18,16 +18,18 @@ jobs:
           method: "POST"
           data: |
             {
-              "username": "${{github.event.sender.login}}",
-              "avatar_url": "${{github.event.sender.avatar_url}}",
+              "username": "${{ github.event.sender.login }}",
+              "avatar_url": "${{ github.event.sender.avatar_url }}",
               "content": "",
               "embeds": [
                 {
-                  "title": |
-                    "${{github.event.issue.title}}",
-                  "url": "${{github.event.issue.url}}",
-                  "description": |
-                    "${{github.event.issue.body}}",
+                  "title": '''
+                    ${{ github.event.issue.title }}
+                  ''',
+                  "url": "${{ github.event.issue.url }}",
+                  "description": '''
+                    ${{ github.event.issue.body }}
+                  ''',
                   "color": 15258703,
                   "footer": {
                     "text": "Aren't Github Actions cool?",
