@@ -10,5 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: |
-          curl -X POST https://discord.com/api/webhooks/1219417054541648018/30_pZ5koZfFuRjjD0ibQ4sGK_6yF9B3rvkk68jyr-xa5y-8y5fLaZ9T9ZwN0pU_uf6U0 -d "content=${{github.event.issue.body}}"
+      - name: Send Webhook POST request
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://discord.com/api/webhooks/1219417054541648018/30_pZ5koZfFuRjjD0ibQ4sGK_6yF9B3rvkk68jyr-xa5y-8y5fLaZ9T9ZwN0pU_uf6U0"
+          method: "POST"
+          data: "{\n  \"username\": \"${{github.event.issue.author.login}}\",\n  \"avatar_url\": \"${{github.event.issue.author.avatarUrl}}\",\n  \"content\": \"\",\n  \"embeds\": [\n    {\n      \"title\": \"${{github.event.issue.title}}\",\n      \"url\": \"${{github.event.issue.url}}\",\n      \"description\": \"${{github.event.issue.body}}\",\n      \"color\": 15258703,\n      \"footer\": {\n        \"text\": \"Aren't Github Actions cool?\",\n        \"icon_url\": \"https://i.imgur.com/fKL31aD.jpg\"\n      }\n    }\n  ]\n}"
