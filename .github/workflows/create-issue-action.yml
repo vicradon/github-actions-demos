@@ -23,9 +23,9 @@ jobs:
               "content": "",
               "embeds": [
                 {
-                  "title": ${{ github.event.issue.title }},
+                  "title": ${{ toJSON(github.event.issue.title) }},
                   "url": "${{ github.event.issue.url }}",
-                  "description": ${{ github.event.issue.body }},
+                  "description": ${{ toJSON(github.event.issue.body) }},
                   "color": 15258703,
                   "footer": {
                     "text": "Aren't Github Actions cool?",
